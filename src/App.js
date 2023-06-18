@@ -25,9 +25,21 @@ function App() {
       setAlert(null);
     },1500);
   } 
-
-  const toggleMode = () => {
-    if(Mode === 'light')
+  const removeBodeyClasses = () => {
+    document.body.classList.remove('bg-dark')
+    document.body.classList.remove('bg-light')
+    document.body.classList.remove('bg-warning')
+    document.body.classList.remove('bg-danger')
+    document.body.classList.remove('bg-success')
+    document.body.classList.remove('bg-primary')
+  }
+  const toggleMode = (cls) => {
+    removeBodeyClasses()
+    if(cls !== null)
+    {
+      document.body.classList.add('bg-'+cls)
+    }
+    else if(cls === null && Mode === 'light')
     {
       setMode('dark');
       document.body.style.backgroundColor = 'black'
@@ -35,13 +47,29 @@ function App() {
       showAlert("Dark Mode has been enabled", "success")
       document.title = "TextUtils - Dark Mode"
     }
-    else{
+    else if(cls === null && Mode === 'dark')
+    {
       setMode('light');
       document.body.style.backgroundColor = 'white'
       document.body.style.color = 'black'
       showAlert("Light Mode has been enabled","success")
       document.title = "TextUtils - Light Mode"
     }
+    // if(Mode === 'light')
+    // {
+    //   setMode('dark');
+    //   document.body.style.backgroundColor = 'black'
+    //   document.body.style.color = 'white'
+    //   showAlert("Dark Mode has been enabled", "success")
+    //   document.title = "TextUtils - Dark Mode"
+    // }
+    // else{
+    //   setMode('light');
+    //   document.body.style.backgroundColor = 'white'
+    //   document.body.style.color = 'black'
+    //   showAlert("Light Mode has been enabled","success")
+    //   document.title = "TextUtils - Light Mode"
+    // }
   }
   return (
     <>
